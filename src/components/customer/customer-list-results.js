@@ -19,20 +19,34 @@ import {
 import Pagination from '@mui/material/Pagination';
 import { getInitials } from '../../utils/get-initials';
 
-export const CustomerListResults = () => {
+export const CustomerListResults = (props) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const [count,setCount] = useState(0);
   const [customers, setCustomers] = useState([]);
   const SIZE = 7;
+  const {a} = props;
+  let result = [];
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/customer/page?page=${page-1}&size=${SIZE}`).then(res => {
-      setCount(Math.ceil(parseInt(res.data.data.count)/SIZE));
+    setCount(Math.ceil(parseInt(res.data.data.count)/SIZE));
+    setCustomers(res.data.data.objectList);
+  })
+  },[])
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/api/customer/search?value=${a}&page=${page-1}&size=${SIZE}`).then(res => {
       setCustomers(res.data.data.objectList);
+      console.log(customers);
     })
-  },[page])
+    
+  },[a, page])
 
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/api/customer/searchAll?value=${a}`).then(res => {
+      setCount(Math.ceil(parseInt(res.data.data.count)/SIZE));
+    })
+  },[a])
 
   const handleSelectAll = (event) => {
     let newSelectedCustomerIds;
@@ -73,7 +87,7 @@ export const CustomerListResults = () => {
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
   };
-
+console.log(a)
   return (
     <Card>
       <PerfectScrollbar>

@@ -14,7 +14,7 @@ export const Sales = (props) => {
         barThickness: 12,
         borderRadius: 4,
         categoryPercentage: 0.5,
-        data: [18, 5, 19, 27, 29, 19, 20],
+        data: [19, 5, 19, 27, 29, 19, 20],
         label: 'This year',
         maxBarThickness: 10
       },

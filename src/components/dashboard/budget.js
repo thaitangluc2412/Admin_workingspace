@@ -1,11 +1,25 @@
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoneyIcon from '@mui/icons-material/Money';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
-export const Budget = (props) => (
-  <Card
+export const Budget = () => {
+
+  const [percent, setPercent] =  useState(0);
+  const [budget, setBudget] =  useState(0);
+  
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/api/reservation/budget`).then(res => {
+      setPercent(res.data.data.percent);
+      setBudget(res.data.data.budget)
+    })
+  },[percent, budget])
+
+  return (
+    <Card
     sx={{ height: '100%' }}
-    {...props}
   >
     <CardContent>
       <Grid
@@ -25,7 +39,7 @@ export const Budget = (props) => (
             color="textPrimary"
             variant="h4"
           >
-            $24k
+           {budget} <span style={{fontSize:"16px"}}>VND</span>
           </Typography>
         </Grid>
         <Grid item>
@@ -47,7 +61,7 @@ export const Budget = (props) => (
           alignItems: 'center'
         }}
       >
-        <ArrowDownwardIcon color="error" />
+        {percent < 100 ? <ArrowDownwardIcon color="error" /> : <ArrowUpwardIcon color="success" />}
         <Typography
           color="error"
           sx={{
@@ -55,7 +69,7 @@ export const Budget = (props) => (
           }}
           variant="body2"
         >
-          12%
+          {percent}%
         </Typography>
         <Typography
           color="textSecondary"
@@ -66,4 +80,5 @@ export const Budget = (props) => (
       </Box>
     </CardContent>
   </Card>
-);
+  )
+};

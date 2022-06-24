@@ -1,8 +1,20 @@
 import { Avatar, Box, Card, CardContent, Grid, LinearProgress, Typography } from '@mui/material';
 import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
-export const TasksProgress = (props) => (
-  <Card
+export const TasksProgress = (props) => {
+  const [totalProperty, setTotalProperty] =  useState(0);
+  
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/api/properties/getTotal`).then(res => {
+      setTotalProperty(res.data.data);
+    })
+  },[])
+
+  return (
+    <Card
     sx={{ height: '100%' }}
     {...props}
   >
@@ -18,15 +30,16 @@ export const TasksProgress = (props) => (
             gutterBottom
             variant="overline"
           >
-            TASKS PROGRESS
+            TOTAL PROPERTIES
           </Typography>
           <Typography
             color="textPrimary"
             variant="h4"
           >
-            75.5%
+            {totalProperty}
           </Typography>
         </Grid>
+        
         <Grid item>
           <Avatar
             sx={{
@@ -39,12 +52,39 @@ export const TasksProgress = (props) => (
           </Avatar>
         </Grid>
       </Grid>
-      <Box sx={{ pt: 3 }}>
-        <LinearProgress
-          value={75.5}
-          variant="determinate"
-        />
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          pt: 2
+        }}
+      >
+        <Typography
+          color="textSecondary"
+          variant="caption"
+          style={{marginRight: '10px'}}
+        >
+          Target:
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            mr: 0
+          }}
+        >
+          30
+        </Typography>
+        <ArrowUpwardIcon color="success" />
+        <Typography
+          variant="body2"
+          sx={{
+            mr: 1
+          }}
+        >
+          Each month
+        </Typography>
       </Box>
     </CardContent>
   </Card>
-);
+  )
+};

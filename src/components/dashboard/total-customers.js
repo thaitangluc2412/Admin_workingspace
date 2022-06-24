@@ -1,9 +1,20 @@
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import PeopleIcon from '@mui/icons-material/PeopleOutlined';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
-export const TotalCustomers = (props) => (
-  <Card {...props}>
+export const TotalCustomers = (props) => {
+  const [totalCustomer, setTotalCustomer] =  useState(0);
+  
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/api/customer/getTotal`).then(res => {
+      setTotalCustomer(res.data.data);
+    })
+  },[])
+
+  return (
+    <Card {...props}>
     <CardContent>
       <Grid
         container
@@ -22,7 +33,7 @@ export const TotalCustomers = (props) => (
             color="textPrimary"
             variant="h4"
           >
-            1,6k
+            {totalCustomer}
           </Typography>
         </Grid>
         <Grid item>
@@ -44,6 +55,21 @@ export const TotalCustomers = (props) => (
           pt: 2
         }}
       >
+        <Typography
+          color="textSecondary"
+          variant="caption"
+          style={{marginRight: '10px'}}
+        >
+          Target:
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            mr: 0
+          }}
+        >
+          30
+        </Typography>
         <ArrowUpwardIcon color="success" />
         <Typography
           variant="body2"
@@ -51,15 +77,10 @@ export const TotalCustomers = (props) => (
             mr: 1
           }}
         >
-          16%
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="caption"
-        >
-          Since last month
+          Each month
         </Typography>
       </Box>
     </CardContent>
-  </Card>
-);
+    </Card>
+  )
+};

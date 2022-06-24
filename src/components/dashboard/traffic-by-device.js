@@ -10,8 +10,8 @@ export const TrafficByDevice = (props) => {
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
-        backgroundColor: ['#3F51B5', '#e53935', '#FB8C00'],
+        data: [43, 15, 20, 22],
+        backgroundColor: ['#3F51B5', '#e53935', '#FB8C00', 'black'],
         borderWidth: 8,
         borderColor: '#FFFFFF',
         hoverBorderColor: '#FFFFFF'
@@ -60,6 +60,12 @@ export const TrafficByDevice = (props) => {
       value: 23,
       icon: PhoneIcon,
       color: '#FB8C00'
+    },
+    {
+      title: 'Mobile',
+      value: 23,
+      icon: PhoneIcon,
+      color: 'blue'
     }
   ];
 
