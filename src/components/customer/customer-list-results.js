@@ -29,13 +29,13 @@ export const CustomerListResults = (props) => {
   const {a} = props;
   let result = [];
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/customer/page?page=${page-1}&size=${SIZE}`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/customer/page?page=${page-1}&size=${SIZE}`).then(res => {
     setCount(Math.ceil(parseInt(res.data.data.count)/SIZE));
     setCustomers(res.data.data.objectList);
   })
   },[])
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/customer/search?value=${a}&page=${page-1}&size=${SIZE}`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/customer/search?value=${a}&page=${page-1}&size=${SIZE}`).then(res => {
       setCustomers(res.data.data.objectList);
       console.log(customers);
     })
@@ -43,7 +43,7 @@ export const CustomerListResults = (props) => {
   },[a, page])
 
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/customer/searchAll?value=${a}`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/customer/searchAll?value=${a}`).then(res => {
       setCount(Math.ceil(parseInt(res.data.data.count)/SIZE));
     })
   },[a])
