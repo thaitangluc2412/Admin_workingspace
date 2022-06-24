@@ -68,7 +68,8 @@ const Properties = () => {
               className='pagination'
               count={count} 
               page={page} 
-              onChange={handlePageChange} color='primary'/>
+              onChange={handlePageChange}
+              color='primary'/>
           </Box>
         </Container>
       </Box>
