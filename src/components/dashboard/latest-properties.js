@@ -14,57 +14,34 @@ import {
 } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const properties = [
-  {
-    id: uuid(),
-    name: 'Dropbox',
-    imageUrl: '/static/images/products/product_1.png',
-    updatedAt: subHours(Date.now(), 2)
-  },
-  {
-    id: uuid(),
-    name: 'Medium Corporation',
-    imageUrl: '/static/images/products/product_2.png',
-    updatedAt: subHours(Date.now(), 2)
-  },
-  {
-    id: uuid(),
-    name: 'Slack',
-    imageUrl: '/static/images/products/product_3.png',
-    updatedAt: subHours(Date.now(), 3)
-  },
-  {
-    id: uuid(),
-    name: 'Lyft',
-    imageUrl: '/static/images/products/product_4.png',
-    updatedAt: subHours(Date.now(), 5)
-  },
-  {
-    id: uuid(),
-    name: 'GitHub',
-    imageUrl: '/static/images/products/product_5.png',
-    updatedAt: subHours(Date.now(), 9)
-  }
-];
 
-export const LatestProperties = (props) => (
-  <Card {...props}>
+export const LatestProperties = (props) => {
+  const [properties,setProperties] = useState([])
+  useEffect(()=>{
+    axios.get(`http://128.199.166.110:8080/api/properties/getLatest`).then(res=> {
+      setProperties(res.data.data)
+    })
+  },[properties])
+  return (
+    <Card {...props}>
     <CardHeader
-      subtitle={`${properties.length} in total`}
+      subtitle={`${properties?.length} in total`}
       title="Latest Properties"
     />
     <Divider />
     <List>
-      {properties.map((product, i) => (
+      {properties?.map((product, i) => (
         <ListItem
           divider={i < properties.length - 1}
           key={product.id}
         >
           <ListItemAvatar>
             <img
-              alt={product.name}
-              src={product.imageUrl}
+              alt={product.images[0].url}
+              src={product.images[0].url}
               style={{
                 height: 48,
                 width: 48
@@ -72,8 +49,7 @@ export const LatestProperties = (props) => (
             />
           </ListItemAvatar>
           <ListItemText
-            primary={product.name}
-            secondary={`Updated ${formatDistanceToNow(product.updatedAt)}`}
+            primary={product.propertyName}
           />
           <IconButton
             edge="end"
@@ -92,14 +68,8 @@ export const LatestProperties = (props) => (
         p: 2
       }}
     >
-      <Button
-        color="primary"
-        endIcon={<ArrowRightIcon />}
-        size="small"
-        variant="text"
-      >
-        View all
-      </Button>
     </Box>
   </Card>
-);
+  )
+  
+};

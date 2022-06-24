@@ -29,7 +29,7 @@ export const CustomerListResults = (props) => {
   const {a} = props;
   let result = [];
   useEffect(()=>{
-    axios.get(`https://workingspace-api.herokuapp.com/api/customer/page?page=${page-1}&size=${SIZE}`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/customer/page?page=${page-1}&size=${SIZE}`).then(res => {
     setCount(Math.ceil(parseInt(res.data.data.count)/SIZE));
     setCustomers(res.data.data.objectList);
   })
@@ -147,12 +147,6 @@ console.log(a)
                         display: 'flex'
                       }}
                     >
-                      {/* <Avatar
-                        src={'https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg'}
-                        sx={{ mr: 2 }}
-                      >
-                        {getInitials(customer.name)}
-                      </Avatar> */}
                       <Typography
                         color="textPrimary"
                         variant="body1"

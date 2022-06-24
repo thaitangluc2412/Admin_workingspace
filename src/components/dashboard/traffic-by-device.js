@@ -3,6 +3,11 @@ import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } fro
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import PhoneIcon from '@mui/icons-material/Phone';
 import TabletIcon from '@mui/icons-material/Tablet';
+import BedIcon from '@mui/icons-material/Bed';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import GroupsIcon from '@mui/icons-material/Groups';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import HomeWorkIcon from '@mui/icons-material/HomeWork';
 
 export const TrafficByDevice = (props) => {
   const theme = useTheme();
@@ -10,14 +15,14 @@ export const TrafficByDevice = (props) => {
   const data = {
     datasets: [
       {
-        data: [43, 15, 20, 22],
-        backgroundColor: ['#3F51B5', '#e53935', '#FB8C00', 'black'],
+        data: [29, 20, 11, 14, 26],
+        backgroundColor: ['#3F51B5', '#e53935', '#FB8C00', '$F09C42', '$4EEE94'],
         borderWidth: 8,
         borderColor: '#FFFFFF',
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['Motel', 'Conference', 'Hotel', 'Apartment', 'Homestay']
   };
 
   const options = {
@@ -41,37 +46,42 @@ export const TrafficByDevice = (props) => {
       titleFontColor: theme.palette.text.primary
     }
   };
-
   const devices = [
     {
-      title: 'Desktop',
-      value: 63,
-      icon: LaptopMacIcon,
+      title: 'Motel',
+      value: 29,
+      icon: BedIcon,
       color: '#3F51B5'
     },
     {
-      title: 'Tablet',
-      value: 15,
-      icon: TabletIcon,
+      title: 'Conference',
+      value: 20,
+      icon: GroupsIcon,
       color: '#E53935'
     },
     {
-      title: 'Mobile',
-      value: 23,
-      icon: PhoneIcon,
+      title: 'Hotel',
+      value: 11,
+      icon: MeetingRoomIcon,
       color: '#FB8C00'
     },
     {
-      title: 'Mobile',
-      value: 23,
-      icon: PhoneIcon,
-      color: 'blue'
+      title: 'Apartment',
+      value: 14,
+      icon: ApartmentIcon,
+      color: '#F09C42'
+    },
+    {
+      title: 'Homestay',
+      value: 26,
+      icon: HomeWorkIcon,
+      color: '#4EEE94'
     }
   ];
 
   return (
     <Card {...props}>
-      <CardHeader title="Traffic by Device" />
+      <CardHeader title="Percentage of property type" />
       <Divider />
       <CardContent>
         <Box

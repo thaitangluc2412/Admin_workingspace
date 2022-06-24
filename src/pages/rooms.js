@@ -12,7 +12,7 @@ const Rooms = () => {
   const [page, setPage] = useState(1);
   const SIZE = 6;
   useEffect(()=>{
-    axios.get(`https://workingspace-api.herokuapp.com/api/rooms/page?page=${page-1}&size=${SIZE}`).then(res=> {
+    axios.get(`http://128.199.166.110:8080/api/rooms/page?page=${page-1}&size=${SIZE}`).then(res=> {
       setCount(Math.ceil(parseInt(res.data?.data?.count)/SIZE));
       setRooms(res.data?.data?.objectList)
       console.log(res.data.data.objectList);

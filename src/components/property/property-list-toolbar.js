@@ -42,12 +42,12 @@ export const PropertyListToolbar = (props) => (
         >
           Export
         </Button> */}
-        <Button
+        {/* <Button
           color="primary"
           variant="contained"
         >
           Add Properties
-        </Button>
+        </Button> */}
       </Box>
     </Box>
     <Box sx={{ mt: 3 }}>

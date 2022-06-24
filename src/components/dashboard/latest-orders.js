@@ -20,63 +20,63 @@ import { SeverityPill } from '../severity-pill';
 const orders = [
   {
     id: uuid(),
-    ref: 'CDD1049',
+    ref: 'Việt Nam',
     amount: 30.5,
     customer: {
-      name: 'Ekaterina Tankova'
+      name: 'Vo Thai Bao'
     },
     createdAt: 1555016400000,
-    status: 'pending'
+    status: 'Pending'
   },
   {
     id: uuid(),
-    ref: 'CDD1048',
+    ref: 'Việt Nam',
     amount: 25.1,
     customer: {
-      name: 'Cao Yu'
+      name: 'Nguyen Anh Vu'
     },
     createdAt: 1555016400000,
-    status: 'delivered'
+    status: 'Approved'
   },
   {
     id: uuid(),
-    ref: 'CDD1047',
+    ref: 'Việt Nam',
     amount: 10.99,
     customer: {
-      name: 'Alexa Richardson'
+      name: 'Tran Van Tri'
     },
     createdAt: 1554930000000,
-    status: 'refunded'
+    status: 'Cancelled'
   },
   {
     id: uuid(),
-    ref: 'CDD1046',
+    ref: 'Việt Nam',
     amount: 96.43,
     customer: {
-      name: 'Anje Keizer'
+      name: 'Nguyen Thi Anh My'
     },
     createdAt: 1554757200000,
-    status: 'pending'
+    status: 'Paying'
   },
   {
     id: uuid(),
-    ref: 'CDD1045',
+    ref: 'Việt Nam',
     amount: 32.54,
     customer: {
-      name: 'Clarke Gillebert'
+      name: 'Nguyen Manh Viet'
     },
     createdAt: 1554670800000,
-    status: 'delivered'
+    status: 'Approved'
   },
   {
     id: uuid(),
-    ref: 'CDD1044',
+    ref: 'Việt Nam',
     amount: 16.76,
     customer: {
-      name: 'Adam Denisov'
+      name: 'Ho Van Hoai'
     },
     createdAt: 1554670800000,
-    status: 'delivered'
+    status: 'Pending'
   }
 ];
 
@@ -89,7 +89,7 @@ export const LatestOrders = (props) => (
           <TableHead>
             <TableRow>
               <TableCell>
-                Order Ref
+                Nationality
               </TableCell>
               <TableCell>
                 Customer
@@ -129,9 +129,10 @@ export const LatestOrders = (props) => (
                 </TableCell>
                 <TableCell>
                   <SeverityPill
-                    color={(order.status === 'delivered' && 'success')
-                    || (order.status === 'refunded' && 'error')
-                    || 'warning'}
+                    color={(order.status === 'Paying' && 'success')
+                    || (order.status === 'Cancelled' && 'error')
+                    || (order.status === 'Pending' && 'warning')
+                    || 'primary'}
                   >
                     {order.status}
                   </SeverityPill>
