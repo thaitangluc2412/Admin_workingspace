@@ -8,7 +8,7 @@ export const TotalCustomers = (props) => {
   const [totalCustomer, setTotalCustomer] =  useState(0);
   
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/customer/getTotal`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/customer/getTotal`).then(res => {
       setTotalCustomer(res.data.data);
     })
   },[])

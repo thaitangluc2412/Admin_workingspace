@@ -11,7 +11,7 @@ export const Budget = () => {
   const [budget, setBudget] =  useState(0);
   
   useEffect(()=>{
-    axios.get(`128.199.166.110:8080/api/reservation/budget`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/reservation/budget`).then(res => {
       setPercent(res.data.data.percent);
       setBudget(res.data.data.budget)
     })

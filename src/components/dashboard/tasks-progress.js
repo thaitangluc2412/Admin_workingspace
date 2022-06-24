@@ -8,7 +8,7 @@ export const TasksProgress = (props) => {
   const [totalProperty, setTotalProperty] =  useState(0);
   
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/properties/getTotal`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/properties/getTotal`).then(res => {
       setTotalProperty(res.data.data);
     })
   },[])
