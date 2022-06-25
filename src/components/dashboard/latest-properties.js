@@ -24,7 +24,7 @@ export const LatestProperties = (props) => {
     axios.get(`http://128.199.166.110:8080/api/properties/getLatest`).then(res=> {
       setProperties(res.data.data)
     })
-  },[properties])
+  },[])
   return (
     <Card {...props}>
     <CardHeader

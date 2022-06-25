@@ -6,12 +6,26 @@ import axios from "axios";
 
 export const TotalCustomers = (props) => {
   const [totalCustomer, setTotalCustomer] =  useState(0);
-  
-  useEffect(()=>{
-    axios.get(`http://128.199.166.110:8080/api/customer/getTotal`).then(res => {
-      setTotalCustomer(res.data.data);
-    })
-  },[])
+
+  useEffect(() => {
+    let headers = new Headers();
+
+    headers.append("Content-Type", "application/json");
+    headers.append("Accept", "application/json");
+
+    headers.append("Access-Control-Allow-Origin", "http://localhost:3000");
+    headers.append("Access-Control-Allow-Credentials", "true");
+    fetch(
+      "http://128.199.166.110:8080/api/customer/getTotal",
+      {
+        method: "GET",
+        headers: headers,
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => setTotalCustomer(data.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Card {...props}>
