@@ -7,7 +7,7 @@ export const TotalProfit = (props) => {
   const [profit, setProfit] =  useState(0);
   
   useEffect(()=>{
-    axios.get(`http://128.199.166.110:8080/api/reservation/getProfit`).then(res => {
+    axios.get(`http://localhost:8080/api/reservation/getProfit`).then(res => {
       setProfit(res.data.data);
     })
   },[])
