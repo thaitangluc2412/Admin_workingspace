@@ -39,7 +39,7 @@ export const Budget = () => {
             color="textPrimary"
             variant="h4"
           >
-           {budget} <span style={{fontSize:"16px"}}>VND</span>
+           {budget} <span style={{fontSize:"16px"}}>$</span>
           </Typography>
         </Grid>
         <Grid item>

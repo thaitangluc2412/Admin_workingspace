@@ -31,7 +31,7 @@ export const TotalProfit = (props) => {
             color="textPrimary"
             variant="h4"
           >
-            {profit} <span style={{fontSize:"16px"}}>VND</span>
+            {profit} <span style={{fontSize:"16px"}}>$</span>
           </Typography>
         </Grid>
         <Grid item>

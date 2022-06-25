@@ -35,7 +35,7 @@ export const CustomerListResults = (props) => {
   })
   },[])
   useEffect(()=>{
-    axios.get(`https://workingspace-api.herokuapp.com/api/customer/search?value=${a}&page=${page-1}&size=${SIZE}`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/customer/search?value=${a}&page=${page-1}&size=${SIZE}`).then(res => {
       setCustomers(res.data.data.objectList);
       console.log(customers);
     })
@@ -43,7 +43,7 @@ export const CustomerListResults = (props) => {
   },[a, page])
 
   useEffect(()=>{
-    axios.get(`https://workingspace-api.herokuapp.com/api/customer/searchAll?value=${a}`).then(res => {
+    axios.get(`http://128.199.166.110:8080/api/customer/searchAll?value=${a}`).then(res => {
       setCount(Math.ceil(parseInt(res.data.data.count)/SIZE));
     })
   },[a])
