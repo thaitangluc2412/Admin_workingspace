@@ -29,9 +29,9 @@ const items = [
     title: "Customers",
   },
   {
-    href: "/properties",
+    href: "/reservations",
     icon: <MapsHomeWorkIcon fontSize="small" />,
-    title: "Properties",
+    title: "Reservations",
   },
   {
     href: "/rooms",
@@ -74,14 +74,20 @@ export const DashboardSidebar = (props) => {
         <div>
           <Box sx={{ p: 3 }}>
             <NextLink href="/" passHref>
-              <a>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "100px",
+                  cursor: "pointer",
+                }}
+              >
                 <Logo
-                  sx={{
-                    height: 42,
-                    width: 42,
-                  }}
+                // sx={{
+                //   height: 42,
+                //   width: 42,
+                // }}
                 />
-              </a>
+              </Box>
             </NextLink>
           </Box>
           <Box sx={{ px: 2 }}></Box>

@@ -1,41 +1,39 @@
-import { Avatar, Box, Card, CardContent, Grid, Typography } from "@mui/material";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { Avatar, Card, CardContent, Grid, Typography } from "@mui/material";
+
+import MoneyIcon from "@mui/icons-material/Money";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { api } from "src/utils/config";
 
-export const Budget = () => {
-  const [profit, setProfit] = useState(0);
+export const TotalReservations = (props) => {
+  const [reservations, setReservations] = useState(0);
 
   useEffect(() => {
-    axios.get(api(`reservations/profit`)).then((res) => {
-      setProfit(res.data);
+    axios.get(api(`reservations/total`)).then((res) => {
+      setReservations(res.data);
     });
   }, []);
-
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card {...props}>
       <CardContent>
         <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
           <Grid item>
             <Typography color="textSecondary" gutterBottom variant="overline">
-              REVENUE
+              TOTAL RESERVATIONS
             </Typography>
             <Typography color="textPrimary" variant="h4">
-              {profit} <span style={{ fontSize: "16px" }}>$</span>
+              {reservations}
             </Typography>
           </Grid>
           <Grid item>
             <Avatar
               sx={{
-                backgroundColor: "error.main",
+                backgroundColor: "primary.main",
                 height: 56,
                 width: 56,
               }}
             >
-              <AttachMoneyIcon />
+              <MoneyIcon />
             </Avatar>
           </Grid>
         </Grid>

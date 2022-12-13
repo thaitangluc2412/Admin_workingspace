@@ -9,13 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import { Search as SearchIcon } from "../../icons/search";
-import { Upload as UploadIcon } from "../../icons/upload";
-import { Download as DownloadIcon } from "../../icons/download";
-import { useEffect, useState } from "react";
 
-export const CustomerListToolbar = (props) => {
-  const [searchValue, setSearchValue] = useState("");
-  const { setA } = props;
+export const ReservationListToolbar = (props) => {
   return (
     <Box {...props}>
       <Box
@@ -28,13 +23,8 @@ export const CustomerListToolbar = (props) => {
         }}
       >
         <Typography sx={{ m: 1 }} variant="h4">
-          Customers
+          Reservations
         </Typography>
-        <Box sx={{ m: 1 }}>
-          <Button color="primary" variant="contained">
-            Add Customers
-          </Button>
-        </Box>
       </Box>
       <Box sx={{ mt: 3 }}>
         <Card>
@@ -51,12 +41,12 @@ export const CustomerListToolbar = (props) => {
                     </InputAdornment>
                   ),
                 }}
-                placeholder="Search customer"
+                placeholder="Search reservations status"
                 variant="outlined"
                 onChange={(e) => {
-                  setSearchValue(e.target.value);
-                  setA(e.target.value);
+                  props.setSearch(e.target.value);
                 }}
+                value={props.search}
               />
             </Box>
           </CardContent>
